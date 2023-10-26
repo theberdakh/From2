@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "821408623160",
+    "project_id": "from2-ae2f5",
+    "storage_bucket": "from2-ae2f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821408623160:android:5c6de42ef9b1afddd294cd",
+        "android_client_info": {
+          "package_name": "com.theberdakh.from2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABnT3ZNt4chyznqoCKbSIJKj1cQXccAVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
