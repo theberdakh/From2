@@ -49,11 +49,19 @@ class MainActivity : AppCompatActivity() {
             reviewManager.requestReviewFlow().addOnCompleteListener {
                 if (it.isSuccessful){
                     reviewManager.launchReviewFlow(this, it.result)
-                    Snackbar.make(this, binding.etFromText, "Join us on Telegram t.me/theberdakh", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(this, binding.etFromText, "Currently, not available :(", Snackbar.LENGTH_LONG).show()
                 }
             }
         }
 
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId){
+                R.id.action_export -> {
+                    Snackbar.make(this, binding.etFromText, "Currently, not available :(", Snackbar.LENGTH_LONG).show()
+                }
+            }
+            true
+        }
 
         val autos = listOf(binding.autoFirstSign, binding.autoSecondSign)
 
