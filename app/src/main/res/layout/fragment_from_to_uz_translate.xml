@@ -20,6 +20,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_from"
                 style="?materialIconButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -36,6 +37,9 @@
             <FrameLayout
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp">
 
                 <View
@@ -48,6 +52,7 @@
             </FrameLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_to"
                 style="?materialIconButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

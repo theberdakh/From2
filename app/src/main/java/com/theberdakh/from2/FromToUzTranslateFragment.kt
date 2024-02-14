@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.theberdakh.from2.databinding.FragmentFromToUzTranslateBinding
+import com.theberdakh.from2.util.showMenu
 
 class FromToUzTranslateFragment: Fragment() {
     private var _binding: FragmentFromToUzTranslateBinding?  =null
@@ -17,6 +18,14 @@ class FromToUzTranslateFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding=  FragmentFromToUzTranslateBinding.inflate(inflater, container, false)
+
+        binding.buttonFrom.setOnClickListener {
+            requireContext().showMenu(binding.buttonFrom, R.menu.menu_popup_languages)
+        }
+
+        binding.buttonTo.setOnClickListener {
+            requireContext().showMenu(binding.buttonTo, R.menu.menu_popup_languages)
+        }
 
         return binding.root
     }

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/main_item"
-        android:title="Funkciyalar">
-        <menu>
+
+
+
+
+
+    <group
+        android:id="@+id/drawable_main">
+
             <item
                 android:id="@+id/nav_action_from_to_uz"
                 android:icon="@drawable/round_translate_24"
@@ -28,8 +32,8 @@
                 android:title="Sazlawlar"
                 android:checkable="true"/>
 
-        </menu>
-    </item>
+
+    </group>
 
 
 

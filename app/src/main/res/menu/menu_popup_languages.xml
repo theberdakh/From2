@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/pop_up_action_uzbek"
+        android:title="Ózbekshe"
+        android:icon="@drawable/uzb_2"/>
+
+    <item android:id="@+id/pop_up_action_karakalpak"
+        android:title="Qaraqalpaqsha"
+        android:icon="@drawable/kar_2"/>
+
 </menu>

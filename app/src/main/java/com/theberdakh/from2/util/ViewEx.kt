@@ -19,6 +19,8 @@ fun Context.showMenu(view: View, @MenuRes menuRes: Int) {
     val popUpMenu = PopupMenu(this, view, Gravity.END)
     popUpMenu.menuInflater.inflate(menuRes, popUpMenu.menu)
 
+
+
     if (popUpMenu.menu is MenuBuilder) {
         val menuBuilder = popUpMenu.menu as MenuBuilder
         menuBuilder.setOptionalIconsVisible(true)
