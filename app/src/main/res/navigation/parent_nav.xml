@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment"
+    android:id="@+id/parent_nav">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.theberdakh.from2.MainFragment"
+        tools:layout="@layout/fragment_main"/>
+
+
+</navigation>
