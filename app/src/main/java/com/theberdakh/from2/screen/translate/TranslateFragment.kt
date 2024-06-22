@@ -1,15 +1,16 @@
-package com.theberdakh.from2
+package com.theberdakh.from2.screen.translate
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.theberdakh.from2.databinding.FragmentFromToUzTranslateBinding
+import com.theberdakh.from2.R
+import com.theberdakh.from2.databinding.FragmentTranslateBinding
 import com.theberdakh.from2.util.showMenu
 
-class FromToUzTranslateFragment: Fragment() {
-    private var _binding: FragmentFromToUzTranslateBinding?  =null
+class TranslateFragment: Fragment() {
+    private var _binding: FragmentTranslateBinding?  =null
     private val binding get() = checkNotNull(_binding)
 
     override fun onCreateView(
@@ -17,7 +18,7 @@ class FromToUzTranslateFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding=  FragmentFromToUzTranslateBinding.inflate(inflater, container, false)
+        _binding=  FragmentTranslateBinding.inflate(inflater, container, false)
 
         binding.buttonFrom.setOnClickListener {
             requireContext().showMenu(binding.buttonFrom, R.menu.menu_popup_languages)

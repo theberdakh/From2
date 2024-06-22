@@ -3,10 +3,10 @@
 
     <item android:id="@+id/pop_up_action_uzbek"
         android:title="Ózbekshe"
-        android:icon="@drawable/uzb_2"/>
+        android:icon="@drawable/pop_up_flag_uzbekistan"/>
 
     <item android:id="@+id/pop_up_action_karakalpak"
         android:title="Qaraqalpaqsha"
-        android:icon="@drawable/kar_2"/>
+        android:icon="@drawable/pop_up_flag_karakalpakstan"/>
 
 </menu>

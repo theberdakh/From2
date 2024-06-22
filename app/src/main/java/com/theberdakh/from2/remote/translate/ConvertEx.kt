@@ -1,6 +1,5 @@
-package com.theberdakh.from2
+package com.theberdakh.from2.remote.translate
 
-import com.theberdakh.from2.remote.translate.Languages
 
 fun Languages.convert(): String {
     return when(this){
