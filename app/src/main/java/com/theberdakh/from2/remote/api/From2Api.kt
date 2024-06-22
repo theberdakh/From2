@@ -1,7 +1,7 @@
-package com.theberdakh.from2.network
+package com.theberdakh.from2.remote.api
 
-import com.theberdakh.from2.data.remote.ResponseData
-import com.theberdakh.from2.data.remote.TranslateRequest
+import com.theberdakh.from2.remote.translate.response.ResponseData
+import com.theberdakh.from2.remote.translate.request.TranslateRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
