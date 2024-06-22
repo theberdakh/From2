@@ -11,7 +11,6 @@ import com.theberdakh.from2.R
 import com.theberdakh.from2.databinding.FragmentMainBinding
 import com.theberdakh.from2.screen.translate.TranslateFragment
 import com.theberdakh.from2.util.replaceFragment
-import com.theberdakh.from2.util.showMenu
 
 class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     private var _binding: FragmentMainBinding? = null

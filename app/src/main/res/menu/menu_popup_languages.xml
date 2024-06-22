@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/pop_up_action_uzbek"
-        android:title="Ózbekshe"
+        android:title="@string/uzbek"
         android:icon="@drawable/pop_up_flag_uzbekistan"/>
 
     <item android:id="@+id/pop_up_action_karakalpak"
-        android:title="Qaraqalpaqsha"
+        android:title="@string/karakalpak"
         android:icon="@drawable/pop_up_flag_karakalpakstan"/>
 
 </menu>

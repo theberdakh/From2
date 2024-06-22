@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.theberdakh.from2.R
 import com.theberdakh.from2.databinding.FragmentTranslateBinding
-import com.theberdakh.from2.util.showMenu
+import com.theberdakh.from2.util.showPopUpMenuWithIcons
 
 class TranslateFragment: Fragment() {
     private var _binding: FragmentTranslateBinding?  =null
@@ -21,11 +21,11 @@ class TranslateFragment: Fragment() {
         _binding=  FragmentTranslateBinding.inflate(inflater, container, false)
 
         binding.buttonFrom.setOnClickListener {
-            requireContext().showMenu(binding.buttonFrom, R.menu.menu_popup_languages)
+            requireContext().showPopUpMenuWithIcons(binding.buttonFrom, R.menu.menu_popup_languages)
         }
 
         binding.buttonTo.setOnClickListener {
-            requireContext().showMenu(binding.buttonTo, R.menu.menu_popup_languages)
+            requireContext().showPopUpMenuWithIcons(binding.buttonTo, R.menu.menu_popup_languages)
         }
 
         return binding.root
