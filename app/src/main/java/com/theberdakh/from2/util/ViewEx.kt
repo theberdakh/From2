@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
@@ -18,6 +19,7 @@ fun Context.showPopUpMenuWithIcons(view: View, @MenuRes menuRes: Int) {
     popUpMenu.menuInflater.inflate(menuRes, popUpMenu.menu)
 
     if (popUpMenu.menu is MenuBuilder) {
+
         val menuBuilder = popUpMenu.menu as MenuBuilder
         menuBuilder.setOptionalIconsVisible(true)
 
@@ -27,11 +29,14 @@ fun Context.showPopUpMenuWithIcons(view: View, @MenuRes menuRes: Int) {
         }
     }
 
-    popUpMenu.setOnMenuItemClickListener { menuItem: MenuItem ->
-        Log.d("popUpMenu", " ${menuItem.title} clicked")
-        true
-    }
+    popUpMenu.setOnMenuItemClickListener{menuItem: MenuItem ->
+            Log.d("Clicked", "${menuItem.title} clicked")
+            true
+        }
 
     popUpMenu.show()
 
+}
+fun Context.showToast(text: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, text, duration).show()
 }

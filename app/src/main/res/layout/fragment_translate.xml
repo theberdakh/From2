@@ -108,11 +108,12 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_translate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="8dp"
-            android:text="Translate"
+            android:text="@string/translate"
             app:cornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
