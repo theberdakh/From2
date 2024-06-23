@@ -1,5 +1,5 @@
 ## From2 Android Library
-An android library to integrate translation service for your app easily. Uses From-to.uz free API service for translation. Supports translations to Karakalpak and 140+ other languages
+An android library to integrate translation service for your app easily. Uses  <a href="https://www.from-to.uz/en/api-docs">From-to.uz</a> free API service for translation. Supports translations to Karakalpak and 140+ other languages
 <pre>
 <img src="/media/img.png" alt="Screenshot from sample app"/>
 </pre>
