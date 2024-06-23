@@ -76,12 +76,7 @@ dependencies {
 
     implementation("com.google.android.play:review:2.0.1")
     implementation("com.google.android.play:review-ktx:2.0.1")
-
-    //koin
-    implementation("io.insert-koin:koin-android:3.4.3")
-    implementation("io.insert-koin:koin-android-ext:3.0.2")
-    implementation("io.insert-koin:koin-core:3.4.3")
-    testImplementation("io.insert-koin:koin-test-junit4:3.4.3")
+    
 
     //fromtouz
     implementation(project(":fromtouz"))

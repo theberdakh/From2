@@ -1,7 +1,6 @@
 package com.theberdakh.from2.screen.translate
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,23 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
 import com.theberdakh.from2.databinding.FragmentTranslateBinding
-import com.theberdakh.from2.presentation.TranslateViewModel
-import com.theberdakh.from2.remote.translate.TranslateLanguages
 import com.theberdakh.from2.util.showPopUpMenuWithIcons
-import com.theberdakh.from2.util.showToast
-import com.theberdakh.fromtouz.translate.TranslateLanguage
 import com.theberdakh.fromtouz.translate
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.theberdakh.fromtouz.translate.TranslateLanguage
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TranslateFragment : Fragment() {
     private var _binding: FragmentTranslateBinding? = null
     private val binding get() = checkNotNull(_binding)
-    private val translateViewModel by viewModel<TranslateViewModel>()
-    private lateinit var _fromLanguage: TranslateLanguages
-    private lateinit var _toLanguage: TranslateLanguages
+    private lateinit var _fromLanguage: TranslateLanguage
+    private lateinit var _toLanguage: TranslateLanguage
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,55 +26,33 @@ class TranslateFragment : Fragment() {
     ): View {
         _binding = FragmentTranslateBinding.inflate(inflater, container, false)
 
-        _fromLanguage = TranslateLanguages.UZBEK
-        _toLanguage = TranslateLanguages.KARAKALPAK
-        initObservers()
+        _fromLanguage = TranslateLanguage.UZBEK
+        _toLanguage = TranslateLanguage.KARAKALPAK
         initSelectLanguage()
         initTranslate()
-
-        lifecycleScope.launch {
-            translate(TranslateLanguage.ENGLISH_LATIN,
-                 TranslateLanguage.KARAKALPAK,
-                "What a wonderful morning!",
-                onSuccess = { text ->
-                    Log.i("OnSuccess", "text: $text")
-                    binding.editTextBottomInput.setText(text)
-                },
-                onMessage = { message ->
-                    Log.i("OnMessage", "text: $message")
-                    binding.editTextBottomInput.setText(message)
-                },
-                onError = { error ->
-                    error.printStackTrace()
-                })
-        }
 
         return binding.root
     }
 
-    private fun initObservers() {
-        translateViewModel.translateResponseSuccess.onEach {
-            binding.editTextBottomInput.setText(it.result)
-        }.launchIn(lifecycleScope)
-
-        translateViewModel.translateResponseMessage.onEach {
-            requireContext().showToast(it)
-        }
-
-        translateViewModel.translateResponseError.onEach {
-            it.printStackTrace()
-        }
-    }
 
     private fun initTranslate() {
         binding.buttonTranslate.setOnClickListener {
-            val text = binding.editTextTopInput.text.toString()
+
+            val text = "What a wonderful morning!"
+
             lifecycleScope.launch {
-                translateViewModel.translate(
-                    langFrom = _fromLanguage.code,
-                    langTo = _toLanguage.code,
-                    text
-                )
+                translate(TranslateLanguage.ENGLISH_LATIN,
+                    TranslateLanguage.KARAKALPAK,
+                    text = text,
+                    onSuccess = { text ->
+                        binding.editTextBottomInput.setText(text)
+                    },
+                    onMessage = { message ->
+                        binding.editTextBottomInput.setText(message)
+                    },
+                    onError = { error ->
+                        error.printStackTrace()
+                    })
             }
         }
     }
@@ -96,10 +66,10 @@ class TranslateFragment : Fragment() {
             ) { menuItem ->
                 _fromLanguage = when (menuItem.itemId) {
                     R.id.pop_up_action_karakalpak ->
-                        TranslateLanguages.KARAKALPAK
+                        TranslateLanguage.KARAKALPAK
 
-                    R.id.pop_up_action_uzbek -> TranslateLanguages.UZBEK
-                    else -> TranslateLanguages.UZBEK
+                    R.id.pop_up_action_uzbek -> TranslateLanguage.UZBEK
+                    else -> TranslateLanguage.UZBEK
                 }
                 true
             }
@@ -110,9 +80,9 @@ class TranslateFragment : Fragment() {
                 R.menu.menu_popup_languages
             ) { menuItem ->
                 _toLanguage = when (menuItem.itemId) {
-                    R.id.pop_up_action_karakalpak -> TranslateLanguages.KARAKALPAK
-                    R.id.pop_up_action_uzbek -> TranslateLanguages.UZBEK
-                    else -> TranslateLanguages.UZBEK
+                    R.id.pop_up_action_karakalpak -> TranslateLanguage.KARAKALPAK
+                    R.id.pop_up_action_uzbek -> TranslateLanguage.UZBEK
+                    else -> TranslateLanguage.UZBEK
                 }
                 true
             }

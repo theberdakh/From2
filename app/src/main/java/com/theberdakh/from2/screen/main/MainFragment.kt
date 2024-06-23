@@ -12,7 +12,7 @@ import com.theberdakh.from2.databinding.FragmentMainBinding
 import com.theberdakh.from2.screen.translate.TranslateFragment
 import com.theberdakh.from2.util.replaceFragment
 
-class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
+class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = checkNotNull(_binding)
     override fun onCreateView(
@@ -22,17 +22,11 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
-
         replaceFragment(
             childFragmentManager,
             R.id.fragment_main_container,
             TranslateFragment()
         )
-
-
-
-
-
 
         return binding.root
     }
@@ -41,12 +35,5 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-
-        }
-        return true
     }
 }
