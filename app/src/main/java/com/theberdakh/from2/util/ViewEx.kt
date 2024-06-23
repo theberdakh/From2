@@ -14,7 +14,7 @@ import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
 
 @SuppressLint("RestrictedApi")
-fun Context.showPopUpMenuWithIcons(view: View, @MenuRes menuRes: Int) {
+fun Context.showPopUpMenuWithIcons(view: View, @MenuRes menuRes: Int, onMenuItemClick: (MenuItem) -> Boolean) {
     val popUpMenu = PopupMenu(this, view, Gravity.END)
     popUpMenu.menuInflater.inflate(menuRes, popUpMenu.menu)
 
@@ -30,8 +30,7 @@ fun Context.showPopUpMenuWithIcons(view: View, @MenuRes menuRes: Int) {
     }
 
     popUpMenu.setOnMenuItemClickListener{menuItem: MenuItem ->
-            Log.d("Clicked", "${menuItem.title} clicked")
-            true
+            onMenuItemClick.invoke(menuItem)
         }
 
     popUpMenu.show()

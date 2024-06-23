@@ -83,4 +83,7 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.4.3")
     testImplementation("io.insert-koin:koin-test-junit4:3.4.3")
 
+    //fromtouz
+    implementation(project(":fromtouz"))
+
 }

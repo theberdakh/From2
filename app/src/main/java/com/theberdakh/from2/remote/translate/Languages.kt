@@ -4,7 +4,7 @@ enum class Languages {
     CYRILLIC, LATIN, UZBEK, KARAKALPAK, UNDEFINED, CYRILLIC_KARAKALPAK, CYRILLIC_LATIN
 }
 
-enum class TranslateLanguages(code: String) {
+enum class TranslateLanguages(val code: String) {
 
     /* Language codes are from https://cdn.from-to.uz/languages.json */
 

@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="1"
-                android:text="Ózbekshe"
+                android:text="@string/uzbek"
                 app:icon="@drawable/icon_flag_uzbekistan"
                 app:iconGravity="start"
                 app:iconPadding="8dp"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="1"
-                android:text="Qaraqalpaqsha"
+                android:text="@string/karakalpak"
                 app:icon="@drawable/icon_flag_karakalpakstan"
                 app:iconGravity="end"
                 app:iconPadding="8dp"
@@ -156,15 +156,14 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingBottom="8dp">
+        android:paddingHorizontal="16dp">
 
         <View
             android:id="@+id/view_copy"
             android:layout_width="24dp"
+            android:layout_marginHorizontal="8dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
-            android:layout_margin="8dp"
             android:background="@drawable/round_content_copy_24"
             android:backgroundTint="?colorSurfaceBright" />
 
@@ -173,7 +172,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
-            android:layout_margin="8dp"
+            android:layout_marginHorizontal="8dp"
             android:background="@drawable/round_share_24"
             android:backgroundTint="?colorSurfaceBright" />
 

@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "From2"
 include(":app")
- 
+include(":fromtouz")

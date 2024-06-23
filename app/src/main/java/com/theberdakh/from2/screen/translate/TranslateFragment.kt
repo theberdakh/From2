@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
 import com.theberdakh.from2.databinding.FragmentTranslateBinding
 import com.theberdakh.from2.presentation.TranslateViewModel
+import com.theberdakh.from2.remote.translate.TranslateLanguages
 import com.theberdakh.from2.util.showPopUpMenuWithIcons
 import com.theberdakh.from2.util.showToast
 import kotlinx.coroutines.flow.launchIn
@@ -20,6 +21,8 @@ class TranslateFragment : Fragment() {
     private var _binding: FragmentTranslateBinding? = null
     private val binding get() = checkNotNull(_binding)
     private val translateViewModel by viewModel<TranslateViewModel>()
+    private lateinit var _fromLanguage: TranslateLanguages
+    private lateinit var _toLanguage: TranslateLanguages
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +31,8 @@ class TranslateFragment : Fragment() {
     ): View {
         _binding = FragmentTranslateBinding.inflate(inflater, container, false)
 
+        _fromLanguage = TranslateLanguages.UZBEK
+        _toLanguage = TranslateLanguages.KARAKALPAK
         initObservers()
         initSelectLanguage()
         initTranslate()
@@ -53,15 +58,34 @@ class TranslateFragment : Fragment() {
         binding.buttonTranslate.setOnClickListener {
             val text = binding.editTextTopInput.text.toString()
             lifecycleScope.launch {
-                translateViewModel.translate(langFrom = "uz", langTo = "kaa", text)
+                    translateViewModel.translate(langFrom = _fromLanguage.code, langTo = _toLanguage.code, text)
             }
         }
     }
 
     private fun initSelectLanguage() {
 
-        binding.buttonFrom.setOnClickListener { requireActivity().showPopUpMenuWithIcons(binding.buttonFrom, R.menu.menu_popup_languages) }
-        binding.buttonTo.setOnClickListener { requireActivity().showPopUpMenuWithIcons(binding.buttonTo, R.menu.menu_popup_languages) }
+        binding.buttonFrom.setOnClickListener {
+            requireActivity().showPopUpMenuWithIcons(binding.buttonFrom, R.menu.menu_popup_languages) { menuItem ->
+                 _fromLanguage = when (menuItem.itemId) {
+                    R.id.pop_up_action_karakalpak ->
+                        TranslateLanguages.KARAKALPAK
+                    R.id.pop_up_action_uzbek -> TranslateLanguages.UZBEK
+                    else -> TranslateLanguages.UZBEK
+                }
+                true
+            }
+        }
+        binding.buttonTo.setOnClickListener {
+            requireActivity().showPopUpMenuWithIcons(binding.buttonTo, R.menu.menu_popup_languages) { menuItem ->
+                 _toLanguage = when (menuItem.itemId) {
+                    R.id.pop_up_action_karakalpak -> TranslateLanguages.KARAKALPAK
+                    R.id.pop_up_action_uzbek -> TranslateLanguages.UZBEK
+                    else -> TranslateLanguages.UZBEK
+                }
+                true
+            }
+        }
 
     }
 

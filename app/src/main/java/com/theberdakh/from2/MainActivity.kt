@@ -2,13 +2,11 @@ package com.theberdakh.from2
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import com.theberdakh.from2.databinding.ActivityMainBinding
 import com.theberdakh.from2.util.setFullscreen
 import com.theberdakh.from2.util.setOnlyLightMode
+import com.theberdakh.fromtouz.addTwo
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         setOnlyLightMode()
