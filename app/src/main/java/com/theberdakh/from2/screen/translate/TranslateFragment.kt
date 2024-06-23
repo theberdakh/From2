@@ -1,6 +1,7 @@
 package com.theberdakh.from2.screen.translate
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,10 @@ import com.theberdakh.from2.presentation.TranslateViewModel
 import com.theberdakh.from2.remote.translate.TranslateLanguages
 import com.theberdakh.from2.util.showPopUpMenuWithIcons
 import com.theberdakh.from2.util.showToast
+import com.theberdakh.fromtouz.ResultData
 import com.theberdakh.fromtouz.translate
+import com.theberdakh.fromtouz.translateState
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -39,7 +43,20 @@ class TranslateFragment : Fragment() {
         initTranslate()
 
         lifecycleScope.launch {
-            translate(_fromLanguage.code, _toLanguage.code, "Salom")
+            translateState(TranslateLanguages.ENGLISH_LATIN.code,
+                TranslateLanguages.KARAKALPAK.code,
+                "What a wonderful morning!",
+                onSuccess = { text ->
+                    Log.i("OnSuccess", "text: $text")
+                    binding.editTextBottomInput.setText(text)
+                },
+                onMessage = { message ->
+                    Log.i("OnMessage", "text: $message")
+                    binding.editTextBottomInput.setText(message)
+                },
+                onError = { error ->
+                    error.printStackTrace()
+                })
         }
 
         return binding.root
@@ -63,7 +80,11 @@ class TranslateFragment : Fragment() {
         binding.buttonTranslate.setOnClickListener {
             val text = binding.editTextTopInput.text.toString()
             lifecycleScope.launch {
-                    translateViewModel.translate(langFrom = _fromLanguage.code, langTo = _toLanguage.code, text)
+                translateViewModel.translate(
+                    langFrom = _fromLanguage.code,
+                    langTo = _toLanguage.code,
+                    text
+                )
             }
         }
     }
@@ -71,10 +92,14 @@ class TranslateFragment : Fragment() {
     private fun initSelectLanguage() {
 
         binding.buttonFrom.setOnClickListener {
-            requireActivity().showPopUpMenuWithIcons(binding.buttonFrom, R.menu.menu_popup_languages) { menuItem ->
-                 _fromLanguage = when (menuItem.itemId) {
+            requireActivity().showPopUpMenuWithIcons(
+                binding.buttonFrom,
+                R.menu.menu_popup_languages
+            ) { menuItem ->
+                _fromLanguage = when (menuItem.itemId) {
                     R.id.pop_up_action_karakalpak ->
                         TranslateLanguages.KARAKALPAK
+
                     R.id.pop_up_action_uzbek -> TranslateLanguages.UZBEK
                     else -> TranslateLanguages.UZBEK
                 }
@@ -82,8 +107,11 @@ class TranslateFragment : Fragment() {
             }
         }
         binding.buttonTo.setOnClickListener {
-            requireActivity().showPopUpMenuWithIcons(binding.buttonTo, R.menu.menu_popup_languages) { menuItem ->
-                 _toLanguage = when (menuItem.itemId) {
+            requireActivity().showPopUpMenuWithIcons(
+                binding.buttonTo,
+                R.menu.menu_popup_languages
+            ) { menuItem ->
+                _toLanguage = when (menuItem.itemId) {
                     R.id.pop_up_action_karakalpak -> TranslateLanguages.KARAKALPAK
                     R.id.pop_up_action_uzbek -> TranslateLanguages.UZBEK
                     else -> TranslateLanguages.UZBEK

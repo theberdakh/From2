@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.theberdakh.from2.databinding.ActivityMainBinding
 import com.theberdakh.from2.util.setFullscreen
 import com.theberdakh.from2.util.setOnlyLightMode
-import com.theberdakh.fromtouz.addTwo
 
 class MainActivity : AppCompatActivity() {
 
