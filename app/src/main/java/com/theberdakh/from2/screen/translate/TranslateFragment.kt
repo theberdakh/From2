@@ -13,10 +13,8 @@ import com.theberdakh.from2.presentation.TranslateViewModel
 import com.theberdakh.from2.remote.translate.TranslateLanguages
 import com.theberdakh.from2.util.showPopUpMenuWithIcons
 import com.theberdakh.from2.util.showToast
-import com.theberdakh.fromtouz.ResultData
+import com.theberdakh.fromtouz.translate.TranslateLanguage
 import com.theberdakh.fromtouz.translate
-import com.theberdakh.fromtouz.translateState
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -43,8 +41,8 @@ class TranslateFragment : Fragment() {
         initTranslate()
 
         lifecycleScope.launch {
-            translateState(TranslateLanguages.ENGLISH_LATIN.code,
-                TranslateLanguages.KARAKALPAK.code,
+            translate(TranslateLanguage.ENGLISH_LATIN,
+                 TranslateLanguage.KARAKALPAK,
                 "What a wonderful morning!",
                 onSuccess = { text ->
                     Log.i("OnSuccess", "text: $text")
