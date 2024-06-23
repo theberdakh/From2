@@ -84,19 +84,5 @@ Note: You can run the sample project in the repo, to see how it works!
 ## Download
 
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.theberdakh.from2)
-## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
-
-
-## Authors
-
-- [@theberdakh](https://www.github.com/theberdakh)
-
-## Download
-
-- [Google Play Store](https://play.google.com/store/apps/details?id=com.theberdakh.from2)
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
 
