@@ -12,6 +12,7 @@ import com.theberdakh.from2.presentation.TranslateViewModel
 import com.theberdakh.from2.remote.translate.TranslateLanguages
 import com.theberdakh.from2.util.showPopUpMenuWithIcons
 import com.theberdakh.from2.util.showToast
+import com.theberdakh.fromtouz.translate
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -36,6 +37,10 @@ class TranslateFragment : Fragment() {
         initObservers()
         initSelectLanguage()
         initTranslate()
+
+        lifecycleScope.launch {
+            translate(_fromLanguage.code, _toLanguage.code, "Salom")
+        }
 
         return binding.root
     }
