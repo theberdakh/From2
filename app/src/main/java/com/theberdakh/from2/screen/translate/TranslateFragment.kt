@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
@@ -51,23 +52,30 @@ class TranslateFragment : Fragment() {
             binding.editTextTopInput.setText("")
         }
 
+        binding.editTextTopInput.addTextChangedListener {
+            translateText()
+        }
+
         binding.buttonTranslate.setOnClickListener {
+            translateText()
+        }
+    }
 
-            val text = binding.editTextTopInput.text.toString()
+    private fun translateText() {
+        val text = binding.editTextTopInput.text.toString()
 
-            lifecycleScope.launch {
-                translate(_fromLanguage, _toLanguage,
-                    text = text,
-                    onSuccess = { text ->
-                        binding.editTextBottomInput.setText(text)
-                    },
-                    onMessage = { message ->
-                        binding.editTextBottomInput.setText(message)
-                    },
-                    onError = { error ->
-                        error.printStackTrace()
-                    })
-            }
+        lifecycleScope.launch {
+            translate(_fromLanguage, _toLanguage,
+                text = text,
+                onSuccess = { text ->
+                    binding.editTextBottomInput.setText(text)
+                },
+                onMessage = { message ->
+                    binding.editTextBottomInput.setText(message)
+                },
+                onError = { error ->
+                    error.printStackTrace()
+                })
         }
     }
 
@@ -78,16 +86,18 @@ class TranslateFragment : Fragment() {
         }
 
         binding.buttonFrom.setOnClickListener {
-            requireContext().showUpMenu(binding.buttonFrom, allLanguages){ ordinal, title ->
+            requireContext().showUpMenu(binding.buttonFrom, allLanguages) { ordinal, title ->
                 binding.buttonFrom.text = title
                 _fromLanguage = TranslateLanguage.valueOf(title.toString())
+                translateText()
                 true
             }
         }
         binding.buttonTo.setOnClickListener {
-            requireContext().showUpMenu(binding.buttonFrom, allLanguages){ ordinal, title ->
+            requireContext().showUpMenu(binding.buttonFrom, allLanguages) { ordinal, title ->
                 binding.buttonFrom.text = title
                 _toLanguage = TranslateLanguage.valueOf(title.toString())
+                translateText()
                 true
             }
         }
