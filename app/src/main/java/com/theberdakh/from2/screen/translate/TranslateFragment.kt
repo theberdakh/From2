@@ -40,21 +40,23 @@ class TranslateFragment : Fragment() {
         initTranslate()
 
 
+
         return binding.root
     }
 
 
     private fun initTranslate() {
+
+        binding.viewDeleteContentTopInput.setOnClickListener {
+            binding.editTextTopInput.setText("")
+        }
+
         binding.buttonTranslate.setOnClickListener {
 
             val text = binding.editTextTopInput.text.toString()
 
             lifecycleScope.launch {
-                Log.i(TAG, "From: $_fromLanguage")
-                Log.i(TAG, "To: $_toLanguage")
-
                 translate(_fromLanguage, _toLanguage,
-
                     text = text,
                     onSuccess = { text ->
                         binding.editTextBottomInput.setText(text)
@@ -71,20 +73,14 @@ class TranslateFragment : Fragment() {
 
     private fun initSelectLanguage() {
 
-
-
         val allLanguages = getAllTranslateLanguages().map {
             Language(it.name, it.ordinal)
         }
-
-
-
 
         binding.buttonFrom.setOnClickListener {
             requireContext().showUpMenu(binding.buttonFrom, allLanguages){ ordinal, title ->
                 binding.buttonFrom.text = title
                 _fromLanguage = TranslateLanguage.valueOf(title.toString())
-                Log.d(TAG, "initSelectLanguage: FromLanguage: $_fromLanguage")
                 true
             }
         }
@@ -92,7 +88,6 @@ class TranslateFragment : Fragment() {
             requireContext().showUpMenu(binding.buttonFrom, allLanguages){ ordinal, title ->
                 binding.buttonFrom.text = title
                 _toLanguage = TranslateLanguage.valueOf(title.toString())
-                Log.d(TAG, "initSelectLanguage: ToLanguage: $_toLanguage")
                 true
             }
         }
