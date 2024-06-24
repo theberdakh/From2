@@ -100,23 +100,12 @@ class TranslateFragment : Fragment() {
             binding.editTextTopInput.setText("")
         }
 
-        binding.editTextTopInput.addTextChangedListener { text ->
-            Log.d(TAG, "EdiText: addText ${text.toString()}")
-        }
-
-        binding.editTextTopInput.doBeforeTextChanged { text, start, count, after ->
-            Log.d(TAG, "EditText: doBefore: $text ")
-        }
-
         binding.editTextTopInput.doAfterTextChanged { text: Editable? ->
             Log.d(TAG, "EditText: doAfter: $text")
             translateText(text.toString())
         }
 
-        binding.editTextTopInput.doOnTextChanged { text, start, before, count ->
-            Log.d(TAG, "EditText: doOn: $text")
 
-        }
 
         binding.buttonTranslate.setOnClickListener {
             translateText(binding.editTextTopInput.text.toString())
