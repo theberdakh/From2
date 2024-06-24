@@ -1,22 +1,28 @@
 package com.theberdakh.from2.screen.translate
 
+import android.R.attr.label
+import android.R.attr.text
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
 import com.theberdakh.from2.data.Language
 import com.theberdakh.from2.databinding.FragmentTranslateBinding
-import com.theberdakh.from2.util.showPopUpMenuWithIcons
+import com.theberdakh.from2.util.showSnackbar
 import com.theberdakh.from2.util.showUpMenu
 import com.theberdakh.fromtouz.getAllTranslateLanguages
 import com.theberdakh.fromtouz.translate
 import com.theberdakh.fromtouz.translate.TranslateLanguage
 import kotlinx.coroutines.launch
+
 
 class TranslateFragment : Fragment() {
     private var _binding: FragmentTranslateBinding? = null
@@ -100,6 +106,14 @@ class TranslateFragment : Fragment() {
                 translateText()
                 true
             }
+        }
+
+        binding.viewCopy.setOnClickListener {
+            val textToCopy = binding.editTextBottomInput.text.toString()
+            val clipboard: ClipboardManager? = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+            val clip = ClipData.newPlainText("From2", textToCopy)
+            clipboard?.setPrimaryClip(clip)
+            binding.viewCopy.showSnackbar("Copied to your clipboard", R.drawable.round_content_copy_24)
         }
 
     }
