@@ -4,7 +4,7 @@
     <string name="close">Close</string>
     <string name="hint_enter_your_text">Tekstińızdi kiritiń...</string>
     <string name="hint_ouput_will_be_here">Awdarma usı jerde payda boladı</string>
-    <string name="uzbek">Ózbekshe</string>
-    <string name="karakalpak">Qaraqalpaqsha</string>
+    <string name="uzbek">UZBEK</string>
+    <string name="karakalpak">KARAKALPAK</string>
     <string name="translate">Awdarmalaw</string>
 </resources>

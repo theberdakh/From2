@@ -6,12 +6,34 @@ import android.graphics.drawable.InsetDrawable
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
+import com.theberdakh.from2.data.Language
+
+
+fun Context.showUpMenu(anchorView: View, listOfLanguage: List<Language>, onMenuItemClick: (Int, CharSequence?) -> Boolean){
+    val popupMenu = android.widget.PopupMenu(this, anchorView)
+    val menu = popupMenu.menu
+    for (language in listOfLanguage){
+        menu.add(Menu.NONE, language.ordinal, Menu.NONE, language.name)
+    }
+
+    popupMenu.setOnMenuItemClickListener { item ->
+        when(item.itemId){
+
+        }
+        onMenuItemClick.invoke(item.itemId, item.title)
+    }
+
+    popupMenu.show()
+
+}
+
 
 @SuppressLint("RestrictedApi")
 fun Context.showPopUpMenuWithIcons(view: View, @MenuRes menuRes: Int, onMenuItemClick: (MenuItem) -> Boolean) {

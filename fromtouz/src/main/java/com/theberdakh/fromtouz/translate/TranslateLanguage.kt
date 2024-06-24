@@ -2,6 +2,8 @@ package com.theberdakh.fromtouz.translate
 
 /* Language codes are from https://cdn.from-to.uz/languages.json */
 enum class TranslateLanguage(val code: String) {
+    
+
     UZBEK("uz"),
     KARAKALPAK("kaa"),
 

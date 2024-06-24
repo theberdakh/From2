@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
+fun getAllTranslateLanguages() = TranslateLanguage.entries.toTypedArray()
+
+
 suspend fun translate(
     langFrom: TranslateLanguage, langTo: TranslateLanguage, text: String,
     onSuccess: (String) -> Unit, onMessage: (String) -> Unit, onError: (Throwable) -> Unit

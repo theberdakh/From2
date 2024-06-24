@@ -24,12 +24,10 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_from"
                 style="?materialIconButtonOutlinedStyle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:maxLines="1"
                 android:text="@string/uzbek"
-                app:icon="@drawable/icon_flag_uzbekistan"
                 app:iconGravity="start"
                 app:iconPadding="8dp"
                 app:iconTint="@android:color/transparent"
@@ -56,12 +54,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_to"
                 style="?materialIconButtonOutlinedStyle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLines="1"
                 android:text="@string/karakalpak"
-                app:icon="@drawable/icon_flag_karakalpakstan"
                 app:iconGravity="end"
                 app:iconPadding="8dp"
                 app:iconTint="@android:color/transparent"
@@ -100,8 +95,6 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/hint_enter_your_text"
-            android:inputType="text"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -130,23 +123,20 @@
         android:background="@drawable/shape_translate_input_field"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:paddingHorizontal="16dp">
 
             <EditText
                 android:id="@+id/edit_text_bottom_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:padding="8dp"
+                android:minLines="5"
+                android:scrollbars="vertical"
                 android:background="@android:color/transparent"
                 android:gravity="top"
                 android:hint="@string/hint_ouput_will_be_here"
-                android:inputType="text"
                 />
 
-        </FrameLayout>
 
 
     </LinearLayout>

@@ -1,14 +1,18 @@
 package com.theberdakh.from2.screen.translate
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
+import com.theberdakh.from2.data.Language
 import com.theberdakh.from2.databinding.FragmentTranslateBinding
 import com.theberdakh.from2.util.showPopUpMenuWithIcons
+import com.theberdakh.from2.util.showUpMenu
+import com.theberdakh.fromtouz.getAllTranslateLanguages
 import com.theberdakh.fromtouz.translate
 import com.theberdakh.fromtouz.translate.TranslateLanguage
 import kotlinx.coroutines.launch
@@ -18,6 +22,10 @@ class TranslateFragment : Fragment() {
     private val binding get() = checkNotNull(_binding)
     private lateinit var _fromLanguage: TranslateLanguage
     private lateinit var _toLanguage: TranslateLanguage
+
+    companion object {
+        const val TAG = "TranslateFragment"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +39,7 @@ class TranslateFragment : Fragment() {
         initSelectLanguage()
         initTranslate()
 
+
         return binding.root
     }
 
@@ -38,11 +47,14 @@ class TranslateFragment : Fragment() {
     private fun initTranslate() {
         binding.buttonTranslate.setOnClickListener {
 
-            val text = "What a wonderful morning!"
+            val text = binding.editTextTopInput.text.toString()
 
             lifecycleScope.launch {
-                translate(TranslateLanguage.ENGLISH_LATIN,
-                    TranslateLanguage.KARAKALPAK,
+                Log.i(TAG, "From: $_fromLanguage")
+                Log.i(TAG, "To: $_toLanguage")
+
+                translate(_fromLanguage, _toLanguage,
+
                     text = text,
                     onSuccess = { text ->
                         binding.editTextBottomInput.setText(text)
@@ -59,31 +71,28 @@ class TranslateFragment : Fragment() {
 
     private fun initSelectLanguage() {
 
-        binding.buttonFrom.setOnClickListener {
-            requireActivity().showPopUpMenuWithIcons(
-                binding.buttonFrom,
-                R.menu.menu_popup_languages
-            ) { menuItem ->
-                _fromLanguage = when (menuItem.itemId) {
-                    R.id.pop_up_action_karakalpak ->
-                        TranslateLanguage.KARAKALPAK
 
-                    R.id.pop_up_action_uzbek -> TranslateLanguage.UZBEK
-                    else -> TranslateLanguage.UZBEK
-                }
+
+        val allLanguages = getAllTranslateLanguages().map {
+            Language(it.name, it.ordinal)
+        }
+
+
+
+
+        binding.buttonFrom.setOnClickListener {
+            requireContext().showUpMenu(binding.buttonFrom, allLanguages){ ordinal, title ->
+                binding.buttonFrom.text = title
+                _fromLanguage = TranslateLanguage.valueOf(title.toString())
+                Log.d(TAG, "initSelectLanguage: FromLanguage: $_fromLanguage")
                 true
             }
         }
         binding.buttonTo.setOnClickListener {
-            requireActivity().showPopUpMenuWithIcons(
-                binding.buttonTo,
-                R.menu.menu_popup_languages
-            ) { menuItem ->
-                _toLanguage = when (menuItem.itemId) {
-                    R.id.pop_up_action_karakalpak -> TranslateLanguage.KARAKALPAK
-                    R.id.pop_up_action_uzbek -> TranslateLanguage.UZBEK
-                    else -> TranslateLanguage.UZBEK
-                }
+            requireContext().showUpMenu(binding.buttonFrom, allLanguages){ ordinal, title ->
+                binding.buttonFrom.text = title
+                _toLanguage = TranslateLanguage.valueOf(title.toString())
+                Log.d(TAG, "initSelectLanguage: ToLanguage: $_toLanguage")
                 true
             }
         }
