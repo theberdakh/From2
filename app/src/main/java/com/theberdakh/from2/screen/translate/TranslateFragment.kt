@@ -1,16 +1,19 @@
 package com.theberdakh.from2.screen.translate
 
-import android.R.attr.label
-import android.R.attr.text
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doBeforeTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
@@ -43,32 +46,15 @@ class TranslateFragment : Fragment() {
 
         _fromLanguage = TranslateLanguage.UZBEK
         _toLanguage = TranslateLanguage.KARAKALPAK
-        initSelectLanguage()
-        initTranslate()
 
 
+        initViews()
 
         return binding.root
     }
 
 
-    private fun initTranslate() {
-
-        binding.viewDeleteContentTopInput.setOnClickListener {
-            binding.editTextTopInput.setText("")
-        }
-
-        binding.editTextTopInput.addTextChangedListener {
-            translateText()
-        }
-
-        binding.buttonTranslate.setOnClickListener {
-            translateText()
-        }
-    }
-
-    private fun translateText() {
-        val text = binding.editTextTopInput.text.toString()
+    private fun translateText(text: String) {
 
         lifecycleScope.launch {
             translate(_fromLanguage, _toLanguage,
@@ -85,17 +71,19 @@ class TranslateFragment : Fragment() {
         }
     }
 
-    private fun initSelectLanguage() {
+    private fun initViews() {
 
         val allLanguages = getAllTranslateLanguages().map {
             Language(it.name, it.ordinal)
         }
 
         binding.buttonFrom.setOnClickListener {
+
+
             requireContext().showUpMenu(binding.buttonFrom, allLanguages) { ordinal, title ->
                 binding.buttonFrom.text = title
                 _fromLanguage = TranslateLanguage.valueOf(title.toString())
-                translateText()
+                translateText(binding.editTextTopInput.text.toString())
                 true
             }
         }
@@ -103,9 +91,35 @@ class TranslateFragment : Fragment() {
             requireContext().showUpMenu(binding.buttonFrom, allLanguages) { ordinal, title ->
                 binding.buttonFrom.text = title
                 _toLanguage = TranslateLanguage.valueOf(title.toString())
-                translateText()
+                translateText(binding.editTextTopInput.text.toString())
                 true
             }
+        }
+
+        binding.viewDeleteContentTopInput.setOnClickListener {
+            binding.editTextTopInput.setText("")
+        }
+
+        binding.editTextTopInput.addTextChangedListener { text ->
+            Log.d(TAG, "EdiText: addText ${text.toString()}")
+        }
+
+        binding.editTextTopInput.doBeforeTextChanged { text, start, count, after ->
+            Log.d(TAG, "EditText: doBefore: $text ")
+        }
+
+        binding.editTextTopInput.doAfterTextChanged { text: Editable? ->
+            Log.d(TAG, "EditText: doAfter: $text")
+            translateText(text.toString())
+        }
+
+        binding.editTextTopInput.doOnTextChanged { text, start, before, count ->
+            Log.d(TAG, "EditText: doOn: $text")
+
+        }
+
+        binding.buttonTranslate.setOnClickListener {
+            translateText(binding.editTextTopInput.text.toString())
         }
 
         binding.viewCopy.setOnClickListener {
@@ -114,6 +128,16 @@ class TranslateFragment : Fragment() {
             val clip = ClipData.newPlainText("From2", textToCopy)
             clipboard?.setPrimaryClip(clip)
             binding.viewCopy.showSnackbar("Copied to your clipboard", R.drawable.round_content_copy_24)
+        }
+
+        binding.viewShare.setOnClickListener {
+            val textToShare = binding.editTextBottomInput.text.toString()
+
+            val sendIntent = Intent()
+            sendIntent.setAction(Intent.ACTION_SEND)
+            sendIntent.putExtra(Intent.EXTRA_TEXT, textToShare)
+            sendIntent.setType("text/plain")
+            startActivity(sendIntent)
         }
 
     }
