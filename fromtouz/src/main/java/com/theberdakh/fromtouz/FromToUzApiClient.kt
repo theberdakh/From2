@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object FromToUzApiClient {
+internal object FromToUzApiClient {
     private const val BASE_URL = "https://api.from-to.uz"
 
     private val httpsLoggingInterceptor = HttpLoggingInterceptor().setLevel(

@@ -60,6 +60,7 @@ class TranslateFragment : Fragment() {
             translate(_fromLanguage, _toLanguage,
                 text = text,
                 onSuccess = { text ->
+
                     binding.editTextBottomInput.setText(text)
                 },
                 onMessage = { message ->

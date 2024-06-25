@@ -1,5 +1,5 @@
 package com.theberdakh.fromtouz.translate.request
 
-data class TranslateRequest(
+internal data class TranslateRequest(
     val body: TranslateBody
 )

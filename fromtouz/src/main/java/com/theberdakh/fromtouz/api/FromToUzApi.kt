@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface FromToUzApi {
+internal interface FromToUzApi {
 
     @POST("/api/v1/translate")
     suspend fun translate(@Body translateRequest: TranslateRequest): Response<TranslateResponse>
