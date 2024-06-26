@@ -49,6 +49,7 @@ android {
 
 dependencies {
 
+    implementation ("com.jakewharton.timber:timber:5.0.1")
     implementation("androidx.compose.material:material:1.6.8")
     implementation ("androidx.compose.compiler:compiler:1.5.14")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.6.8")

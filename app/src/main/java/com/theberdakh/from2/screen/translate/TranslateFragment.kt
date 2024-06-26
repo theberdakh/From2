@@ -25,6 +25,7 @@ import com.theberdakh.fromtouz.getAllTranslateLanguages
 import com.theberdakh.fromtouz.translate
 import com.theberdakh.fromtouz.translate.TranslateLanguage
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 class TranslateFragment : Fragment() {
@@ -33,9 +34,6 @@ class TranslateFragment : Fragment() {
     private lateinit var _fromLanguage: TranslateLanguage
     private lateinit var _toLanguage: TranslateLanguage
 
-    companion object {
-        const val TAG = "TranslateFragment"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +42,8 @@ class TranslateFragment : Fragment() {
     ): View {
         _binding = FragmentTranslateBinding.inflate(inflater, container, false)
 
+        Timber.i("onCreateView()")
+
         _fromLanguage = TranslateLanguage.UZBEK
         _toLanguage = TranslateLanguage.KARAKALPAK
 
@@ -51,6 +51,19 @@ class TranslateFragment : Fragment() {
         initViews()
 
         return binding.root
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
+        Timber.i("onStart()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        Timber.i("onStop()")
     }
 
 
@@ -102,7 +115,7 @@ class TranslateFragment : Fragment() {
         }
 
         binding.editTextTopInput.doAfterTextChanged { text: Editable? ->
-            Log.d(TAG, "EditText: doAfter: $text")
+            Log.d("TranslateFragment", "EditText: doAfter: $text")
             translateText(text.toString())
         }
 
@@ -135,5 +148,6 @@ class TranslateFragment : Fragment() {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+        Timber.i("onDestroyView()")
     }
 }

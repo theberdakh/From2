@@ -1,16 +1,18 @@
 package com.theberdakh.from2.screen.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.material.navigation.NavigationView
 import com.theberdakh.from2.R
 import com.theberdakh.from2.databinding.FragmentMainBinding
+import com.theberdakh.from2.screen.login.LoginFragment
 import com.theberdakh.from2.screen.translate.TranslateFragment
+import com.theberdakh.from2.util.addFragment
 import com.theberdakh.from2.util.replaceFragment
+import timber.log.Timber
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
@@ -20,6 +22,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+      Timber.i("onCreateView()")
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
         replaceFragment(
@@ -28,12 +31,32 @@ class MainFragment : Fragment() {
             TranslateFragment()
         )
 
+        binding.toolbar.setNavigationOnClickListener {
+            addFragment(
+                requireActivity().supportFragmentManager,
+                R.id.activity_main_container,
+                LoginFragment()
+            )
+
+        }
+
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop()")
     }
 
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+        Timber.i("onDestroyView()")
     }
 }
