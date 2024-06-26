@@ -2,13 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/mainFragment"
-    android:id="@+id/parent_nav">
+    android:id="@+id/login_nav"
+    app:startDestination="@id/registerFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/registerFragment"
         android:name="com.theberdakh.from2.screen.host.MainNavigationFragment"
-        tools:layout="@layout/fragment_navigation_main"/>
-
+        tools:layout="@layout/fragment_register"/>
 
 </navigation>

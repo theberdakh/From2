@@ -10,9 +10,9 @@ fun replaceFragment(fragmentManager: FragmentManager, @IdRes fragmentContainer: 
     transaction.commit()
 }
 
-fun addFragment(fragmentManager: FragmentManager, @IdRes fragmentContainer: Int, fragment: Fragment){
+fun addFragment(fragmentManager: FragmentManager, @IdRes fragmentContainer: Int, fragment: Fragment, tag: String){
     val transaction = fragmentManager.beginTransaction()
-    transaction.add(fragmentContainer, fragment, fragment.tag)
-    transaction.addToBackStack(fragment.tag)
+    transaction.add(fragmentContainer, fragment, tag)
+    transaction.addToBackStack(tag)
     transaction.commit()
 }
