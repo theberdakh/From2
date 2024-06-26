@@ -24,10 +24,7 @@ class RegisterFragment: Fragment() {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         Timber.i("onCreateView()")
 
-        requireActivity().window.apply {
-            val background = ContextCompat.getDrawable(requireContext(), R.drawable.background)
-            setBackgroundDrawable(background)
-        }
+
 
         binding.iconClose.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
@@ -58,7 +55,7 @@ class RegisterFragment: Fragment() {
         super.onDestroyView()
         _binding = null
         Timber.i("onDestroyView()")
-        requireActivity().window.setBackgroundDrawable(null)
+
 
     }
 }

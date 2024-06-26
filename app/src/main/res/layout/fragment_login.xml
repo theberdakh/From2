@@ -4,11 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true"
-    android:background="@drawable/background"
+    android:background="#C8B8A8"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-
 
     <FrameLayout
         android:id="@+id/icon_close_login"
@@ -26,26 +24,32 @@
 
     </FrameLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@drawable/half"
-        android:backgroundTint="#4DFFFFFF"
+        android:backgroundTint="@color/white"
         android:padding="20dp"
         android:layout_marginTop="100dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome again!"
+            android:textAppearance="?textAppearanceTitleLarge"
+            android:textAlignment="center" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="@color/white"
             android:hint="Name"
             app:hintTextColor="@color/white"
             app:boxCornerRadiusTopStart="16dp"
             app:boxCornerRadiusTopEnd="16dp"
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusBottomEnd="16dp"
+            android:layout_marginTop="8dp"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +63,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="@color/white"
             android:hint="Name"
             android:layout_marginTop="20dp"
             app:hintTextColor="@color/white"
@@ -67,6 +70,7 @@
             app:boxCornerRadiusTopEnd="16dp"
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusBottomEnd="16dp"
+            app:helperTextTextAppearance="?textAppearanceBody2"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -78,7 +82,22 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/PrimaryButton"
+            android:text="Sign In"
+            android:layout_marginTop="40dp" />
+
+
+
+
+
+
     </LinearLayout>
+
+
+
 
 
 

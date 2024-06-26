@@ -73,7 +73,6 @@ class TranslateFragment : Fragment() {
             translate(_fromLanguage, _toLanguage,
                 text = text,
                 onSuccess = { text ->
-
                     binding.editTextBottomInput.setText(text)
                 },
                 onMessage = { message ->
@@ -91,26 +90,26 @@ class TranslateFragment : Fragment() {
             Language(it.name, it.ordinal)
         }
 
-        binding.buttonFrom.setOnClickListener {
+        binding.buttonFromLanguage.setOnClickListener {
 
 
-            requireContext().showUpMenu(binding.buttonFrom, allLanguages) { ordinal, title ->
-                binding.buttonFrom.text = title
+            requireContext().showUpMenu(binding.buttonFromLanguage, allLanguages) { ordinal, title ->
+                binding.buttonFromLanguage.text = title
                 _fromLanguage = TranslateLanguage.valueOf(title.toString())
                 translateText(binding.editTextTopInput.text.toString())
                 true
             }
         }
-        binding.buttonTo.setOnClickListener {
-            requireContext().showUpMenu(binding.buttonFrom, allLanguages) { ordinal, title ->
-                binding.buttonFrom.text = title
+        binding.buttonToLanguage.setOnClickListener {
+            requireContext().showUpMenu(binding.buttonFromLanguage, allLanguages) { ordinal, title ->
+                binding.buttonFromLanguage.text = title
                 _toLanguage = TranslateLanguage.valueOf(title.toString())
                 translateText(binding.editTextTopInput.text.toString())
                 true
             }
         }
 
-        binding.viewDeleteContentTopInput.setOnClickListener {
+        binding.iconClearTopInput.setOnClickListener {
             binding.editTextTopInput.setText("")
         }
 

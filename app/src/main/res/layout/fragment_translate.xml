@@ -4,110 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="?colorSurfaceDim"
     android:orientation="vertical">
 
-    <FrameLayout
+    <com.google.android.material.button.MaterialButtonToggleGroup
         android:layout_width="match_parent"
+        android:layout_margin="8dp"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:background="@drawable/shape_translate_card_arrow"
-            android:elevation="3dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_from_language"
+            style="@style/PrimaryButton"
+            android:backgroundTint="?colorSurface"
+            android:textColor="?colorOnSurface"
+            android:text="@string/uzbek"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_from"
-                style="?materialIconButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/uzbek"
-                app:iconGravity="start"
-                app:iconPadding="8dp"
-                app:iconTint="@android:color/transparent"
-                app:iconTintMode="add"
-                app:strokeWidth="0dp" />
-
-            <FrameLayout
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="8dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/round_compare_arrows_24"
-                    android:backgroundTint="?colorSecondary" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.Icon"
+            android:backgroundTint="?colorSurface"
+            app:iconTint="?colorOnSurface"
+            app:icon="@drawable/round_compare_arrows_24"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content" />
 
 
-            </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_to_language"
+            style="@style/PrimaryButton"
+            android:layout_width="0dp"
+            android:backgroundTint="?colorSurface"
+            android:textColor="?colorOnSurface"
+            android:text="@string/karakalpak"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_to"
-                style="?materialIconButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/karakalpak"
-                app:iconGravity="end"
-                app:iconPadding="8dp"
-                app:iconTint="@android:color/transparent"
-                app:iconTintMode="add"
-                app:strokeWidth="0dp" />
-        </LinearLayout>
-    </FrameLayout>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginHorizontal="16dp"
         android:background="@drawable/shape_translate_input_field"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <View
-            android:id="@+id/view_delete_content_top_input"
+            android:id="@+id/icon_clear_top_input"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
-            android:layout_margin="8dp"
             android:background="@drawable/round_close_24"
-            android:backgroundTint="?colorSecondary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/edit_text_top_input"
+            app:layout_constraintTop_toTopOf="@id/edit_text_top_input" />
 
 
         <EditText
             android:id="@+id/edit_text_top_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:imeOptions="actionDone"
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/hint_enter_your_text"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:imeOptions="actionDone"
+            app:layout_constraintEnd_toStartOf="@id/icon_clear_top_input"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_translate"
+            style="@style/PrimaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_margin="8dp"
             android:text="@string/translate"
-            app:cornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit_text_top_input" />
@@ -119,24 +95,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:background="@drawable/shape_translate_input_field"
         android:orientation="vertical">
 
 
-            <EditText
-                android:id="@+id/edit_text_bottom_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:padding="8dp"
-                android:minLines="5"
-                android:scrollbars="vertical"
-                android:background="@android:color/transparent"
-                android:gravity="top"
-                android:hint="@string/hint_ouput_will_be_here"
-                />
-
+        <EditText
+            android:id="@+id/edit_text_bottom_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/hint_ouput_will_be_here"
+            android:minLines="5"
+            android:padding="8dp"
+            android:scrollbars="vertical" />
 
 
     </LinearLayout>
@@ -144,16 +118,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:gravity="end"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp">
+        android:orientation="horizontal">
 
         <View
             android:id="@+id/view_copy"
             android:layout_width="24dp"
-            android:layout_marginHorizontal="8dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
+            android:layout_marginHorizontal="8dp"
             android:background="@drawable/round_content_copy_24"
             android:backgroundTint="?colorSurfaceBright" />
 
