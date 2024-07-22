@@ -125,7 +125,7 @@ class TranslateFragment : Fragment() {
             }
         }
 
-        binding.viewDeleteContentTopInput.setOnClickListener {
+        binding.viewDelete.setOnClickListener {
             binding.editTextTopInput.setText("")
         }
 

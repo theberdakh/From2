@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorSurfaceContainer"
     android:orientation="vertical">
 
     <FrameLayout
@@ -69,10 +70,7 @@
         </LinearLayout>
     </FrameLayout>
 
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -81,35 +79,43 @@
         android:background="@drawable/shape_translate_input_field"
         android:orientation="vertical">
 
-        <View
-            android:id="@+id/view_delete_content_top_input"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:background="@drawable/round_close_24"
-            android:visibility="invisible"
-            android:backgroundTint="?colorSecondary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edit_text_top_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:imeOptions="actionDone"
+                android:background="@android:color/transparent"
+                android:gravity="top"
+                android:scrollbars="vertical"
+                android:hint="@string/hint_enter_your_text"
+                android:inputType="textNoSuggestions|textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
 
-
-        <EditText
-            android:id="@+id/edit_text_top_input"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:padding="8dp"
-            android:imeOptions="actionDone"
-            android:background="@android:color/transparent"
-            android:gravity="top"
-            android:hint="@string/hint_enter_your_text"
-            android:inputType="textNoSuggestions"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="4dp"
+            android:visibility="gone"
+            android:gravity="center_vertical|end"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/view_delete"
+                android:layout_width="24dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_height="24dp"
+                android:background="@drawable/round_close_24"
+                android:backgroundTint="?colorPrimaryVariant" />
+
+        </LinearLayout>
+
+
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider"
@@ -127,18 +133,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:inputType="textNoSuggestions"
+                android:inputType="textNoSuggestions|textMultiLine"
                 android:padding="8dp"
-                android:minLines="5"
                 android:scrollbars="vertical"
                 android:background="@android:color/transparent"
                 android:gravity="top"
                 android:hint="@string/hint_ouput_will_be_here"
-                app:layout_constraintTop_toBottomOf="@id/divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="4dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/view_copy"
+                android:layout_width="24dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:background="@drawable/round_content_copy_24"
+                android:backgroundTint="?colorPrimaryVariant" />
+
+            <View
+                android:id="@+id/view_share"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:layout_marginHorizontal="8dp"
+                android:background="@drawable/round_share_24"
+                android:backgroundTint="?colorPrimaryVariant" />
+
+        </LinearLayout>
 
 
         <com.google.android.material.button.MaterialButton
@@ -155,36 +183,11 @@
             app:layout_constraintTop_toBottomOf="@id/edit_text_top_input" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp">
-
-        <View
-            android:id="@+id/view_copy"
-            android:layout_width="24dp"
-            android:layout_marginHorizontal="8dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end"
-            android:background="@drawable/round_content_copy_24"
-            android:backgroundTint="?colorSurfaceBright" />
-
-        <View
-            android:id="@+id/view_share"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/round_share_24"
-            android:backgroundTint="?colorSurfaceBright" />
-
     </LinearLayout>
+
+
+
+
+
 
 </LinearLayout>
