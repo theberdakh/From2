@@ -95,6 +95,7 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/hint_enter_your_text"
+            android:inputType="textNoSuggestions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -129,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:inputType="textNoSuggestions"
                 android:padding="8dp"
                 android:minLines="5"
                 android:scrollbars="vertical"

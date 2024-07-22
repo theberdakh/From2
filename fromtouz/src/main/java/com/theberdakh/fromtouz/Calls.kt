@@ -20,7 +20,14 @@ suspend fun translate(
 
     response.collectLatest {
         when (it) {
-            is TranslationResult.Success -> onSuccess.invoke(it.data.result)
+            is TranslationResult.Success -> {
+                /*Manual handling bug of server that returns Uppercased words even if it starts from lower case*/
+                if (text.first().isLowerCase()) {
+                    onSuccess.invoke(it.data.result.replaceFirstChar { firstChar -> firstChar.lowercase() })
+                } else {
+                    onSuccess.invoke(it.data.result)
+                }
+            }
             is TranslationResult.Message -> onMessage.invoke(it.message)
             is TranslationResult.Error -> onError.invoke(it.error)
         }

@@ -76,10 +76,11 @@ class TranslateFragment : Fragment() {
                     translate(_fromLanguage, _toLanguage,
                         text = text,
                         onSuccess = { text ->
-
+                            Log.i(TAG, "result: $text")
                             binding.editTextBottomInput.setText(text)
                         },
                         onMessage = { message ->
+                            Log.i(TAG, "result: $message")
                             binding.editTextBottomInput.setText(message)
                         },
                         onError = { error ->
