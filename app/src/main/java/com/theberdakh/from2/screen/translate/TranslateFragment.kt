@@ -12,6 +12,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.appcompat.app.ActionBar.LayoutParams
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doBeforeTextChanged
@@ -77,6 +82,7 @@ class TranslateFragment : Fragment() {
                         text = text,
                         onSuccess = { text ->
                             Log.i(TAG, "result: $text")
+                            binding.editTextBottomInput.isVisible = true
                             binding.editTextBottomInput.setText(text)
                         },
                         onMessage = { message ->

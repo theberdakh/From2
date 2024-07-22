@@ -22,7 +22,7 @@ suspend fun translate(
         when (it) {
             is TranslationResult.Success -> {
                 /*Manual handling bug of server that returns Uppercased words even if it starts from lower case*/
-                if (text.first().isLowerCase()) {
+                if (text.isNotEmpty() && text.first().isLowerCase()) {
                     onSuccess.invoke(it.data.result.replaceFirstChar { firstChar -> firstChar.lowercase() })
                 } else {
                     onSuccess.invoke(it.data.result)
