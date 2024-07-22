@@ -4,6 +4,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -15,10 +17,15 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
 import com.theberdakh.from2.data.Language
 import com.theberdakh.from2.databinding.FragmentTranslateBinding
+import com.theberdakh.from2.presentation.TranslateFragmentViewModel
+import com.theberdakh.from2.util.NetworkConnectionRepoFactory
+import com.theberdakh.from2.util.NetworkConnectionRepository
 import com.theberdakh.from2.util.showSnackbar
 import com.theberdakh.from2.util.showUpMenu
 import com.theberdakh.fromtouz.getAllTranslateLanguages
@@ -32,6 +39,10 @@ class TranslateFragment : Fragment() {
     private val binding get() = checkNotNull(_binding)
     private lateinit var _fromLanguage: TranslateLanguage
     private lateinit var _toLanguage: TranslateLanguage
+    private lateinit var connectivityManager: ConnectivityManager
+    private val viewModel: TranslateFragmentViewModel by viewModels {NetworkConnectionRepoFactory(
+        NetworkConnectionRepository(connectivityManager)
+    ) }
 
     companion object {
         const val TAG = "TranslateFragment"
@@ -43,6 +54,8 @@ class TranslateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTranslateBinding.inflate(inflater, container, false)
+
+        connectivityManager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         _fromLanguage = TranslateLanguage.UZBEK
         _toLanguage = TranslateLanguage.KARAKALPAK
@@ -56,20 +69,28 @@ class TranslateFragment : Fragment() {
 
     private fun translateText(text: String) {
 
-        lifecycleScope.launch {
-            translate(_fromLanguage, _toLanguage,
-                text = text,
-                onSuccess = { text ->
 
-                    binding.editTextBottomInput.setText(text)
-                },
-                onMessage = { message ->
-                    binding.editTextBottomInput.setText(message)
-                },
-                onError = { error ->
-                    error.printStackTrace()
-                })
+        viewModel.isOnline.observe(requireActivity()) { isOnline ->
+            if (isOnline){
+                lifecycleScope.launch {
+                    translate(_fromLanguage, _toLanguage,
+                        text = text,
+                        onSuccess = { text ->
+
+                            binding.editTextBottomInput.setText(text)
+                        },
+                        onMessage = { message ->
+                            binding.editTextBottomInput.setText(message)
+                        },
+                        onError = { error ->
+                            error.printStackTrace()
+                        })
+                }
+            } else {
+                binding.buttonTranslate.showSnackbar("Check your Internet connection")
+            }
         }
+
     }
 
     private fun initViews() {
