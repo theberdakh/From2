@@ -5,25 +5,16 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.Network
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import androidx.appcompat.app.ActionBar.LayoutParams
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doBeforeTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.theberdakh.from2.R
 import com.theberdakh.from2.data.Language
@@ -36,6 +27,8 @@ import com.theberdakh.from2.util.showUpMenu
 import com.theberdakh.fromtouz.getAllTranslateLanguages
 import com.theberdakh.fromtouz.translate
 import com.theberdakh.fromtouz.translate.TranslateLanguage
+import com.theberdakh.fromtouz.transliterate
+import com.theberdakh.fromtouz.transliterate.TransliterateLanguage
 import kotlinx.coroutines.launch
 
 
@@ -128,6 +121,7 @@ class TranslateFragment : Fragment() {
         binding.viewDelete.setOnClickListener {
             binding.editTextTopInput.setText("")
         }
+
 
         binding.editTextTopInput.doAfterTextChanged { text: Editable? ->
             Log.d(TAG, "EditText: doAfter: $text")
